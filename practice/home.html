@@ -7,8 +7,17 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <button>Up</button>
-    <button>Down</button>
+    <button id="todo-button" onclick="changeText()">None</button> <hr><br>
+    <div id="counter">0</div><br>
+    <button id="increase-button" onclick="increaseNumber()">Up</button> 
+    <button onclick="decreaseNumber()">Down</button> <hr> <br>
+
+    <hr>
+    <input type="text" name="input-item" id="input-value-ID">
+    <button onclick="takeAndShow()">Take and Show</button> <br> <br>
+    <div id="show-here"></div>
+    <hr>
+    
     
     <script src="index.js"></script>
 </body>

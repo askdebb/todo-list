@@ -5,3 +5,9 @@ todos.forEach(todoHeading => {
     element.innerText = todoHeading;
     document.body.appendChild(element);  
 });
+
+function addToDo (){
+    let inputID = document.getElementById('todo-item');
+    let inputText = inputID.value;
+    todos.push(inputText);
+}

@@ -105,4 +105,31 @@ numbersArray.forEach(function arraySUm(params) {
 console.log("Final summation is: "+summerFinal);
 
 
+function changeText(){
+    let btnID = document.querySelector('#todo-button');
+    btnID.innerText = "Done";
+}
+
+let count = 0;
+
+function increaseNumber(){
+    // let btnID = document.querySelector('#increase-button');
+    let divIDWithCounterNumber = document.querySelector('#counter');
+    divIDWithCounterNumber.innerHTML = count +=1;
+
+}
+function decreaseNumber(){
+    let divIDWithCounterNumber = document.querySelector('#counter');
+    divIDWithCounterNumber.innerHTML = count -=1;
+}
+
+function takeAndShow(){
+    let getInputID = document.querySelector('#input-value-ID');
+    let getInputText = getInputID.value;
+    let getShowDivID = document.querySelector('#show-here');
+    getShowDivID.innerText = getInputText;
+}
+
+
+
 
