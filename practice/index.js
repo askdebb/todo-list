@@ -32,6 +32,18 @@
 // console.log(observation2);
 
 
-let age = 20;
-let message = "I am " + age + " years old";
-console.log("The typeOf message variable is: "+ typeof(message));
+// let age = 20;
+// let message = "I am " + age + " years old";
+// console.log("The typeOf message variable is: "+ typeof(message));
+
+setTimeout(changeTitleName,5000);
+function changeTitleName (){
+
+    document.querySelector("head title").innerHTML = "Chris Todo App";
+    console.log("worked!");
+    setTimeout(function () {document.querySelector("head title").innerHTML = "JS Practice"; console.log("changed")}, 10000);
+}
+
+
+
+
