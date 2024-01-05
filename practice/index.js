@@ -44,21 +44,36 @@ let todo1 = 3334;
 let todo2 = "Use Commercial Car";
 let todo3 = "Swap Phone";
 
+function addToDo(todoTitle){
+    let divElement = document.createElement('div');
+    divElement.innerText = todoTitle;
+    document.body.appendChild(divElement);
+}
+
 let btnElement = document.createElement('button');
 btnElement.innerText = "Click Me";
 document.body.appendChild(btnElement);
 
-let divElement = document.createElement('div');
-divElement.innerText = todo3;
-document.body.appendChild(divElement);
 
-divElement = document.createElement('div');
-divElement.innerText = todo2;
-document.body.appendChild(divElement);
+addToDo(todo1);
+addToDo(todo2);
+addToDo(todo3);
 
-divElement = document.createElement('div');
-divElement.innerText = todo1;
-document.body.appendChild(divElement);
+
+function greeting (firstName){
+    console.log("Hello "+firstName);
+}
+greeting('nana annaa');
+
+function toUpper (str){
+console.log(str.toUpperCase());
+}
+toUpper("Chris");
+
+function inchesToCentimeters(inches){
+    console.log(" The length of "+inches+" inches is "+inches * 2.54 + " cm.");
+}
+inchesToCentimeters(2);
 
 
 
