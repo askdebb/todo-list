@@ -76,8 +76,33 @@ function inchesToCentimeters(inches){
 inchesToCentimeters(2);
 
 
+newToDosUpperCase = [];
+toDos = ["Buy Twister", "Sell Twister", "Credit Twister"]
+toDos.forEach(todosHead => {
+    newToDosUpperCase.push(todosHead.toUpperCase());
+});
+console.log(newToDosUpperCase);
+console.log("The new toDos array is: "+newToDosUpperCase);
 
 
+
+newtoDosArrayDouble = [];
+toDosToDouble = ["ant", "fly", "cry"]
+toDosToDouble.forEach(
+    function array(theToDoArr){
+        newtoDosArrayDouble.push(theToDoArr);
+        newtoDosArrayDouble.push(theToDoArr);
+    }
+);
+console.log(newtoDosArrayDouble);
+
+numbersArray = [1,2,3,4,5];
+let summerFinal = 0;
+numbersArray.forEach(function arraySUm(params) {
+    summerFinal +=params;
+    console.log("For each summation of "+params+ " which has an index of "+numbersArray.indexOf(params)+" is: "+summerFinal);
+});
+console.log("Final summation is: "+summerFinal);
 
 
 
