@@ -1,9 +1,5 @@
 // console.log("Christopher Wiafe Debrah");
 
-// let todo1 = 3334;
-// let todo2 = "use commercial car";
-// let todo3 = "swap phone";
-
 // console.log("It is a type of: "+typeof(todo1));
 
 // let date = new Date();
@@ -36,13 +32,36 @@
 // let message = "I am " + age + " years old";
 // console.log("The typeOf message variable is: "+ typeof(message));
 
-setTimeout(changeTitleName,5000);
-function changeTitleName (){
+// setTimeout(changeTitleName,5000);
+// function changeTitleName (){
 
-    document.querySelector("head title").innerHTML = "Chris Todo App";
-    console.log("worked!");
-    setTimeout(function () {document.querySelector("head title").innerHTML = "JS Practice"; console.log("changed")}, 10000);
-}
+//     document.querySelector("head title").innerHTML = "Chris Todo App";
+//     console.log("worked!");
+//     setTimeout(function () {document.querySelector("head title").innerHTML = "JS Practice"; console.log("changed")}, 10000);
+// }
+
+let todo1 = 3334;
+let todo2 = "Use Commercial Car";
+let todo3 = "Swap Phone";
+
+let btnElement = document.createElement('button');
+btnElement.innerText = "Click Me";
+document.body.appendChild(btnElement);
+
+let divElement = document.createElement('div');
+divElement.innerText = todo3;
+document.body.appendChild(divElement);
+
+divElement = document.createElement('div');
+divElement.innerText = todo2;
+document.body.appendChild(divElement);
+
+divElement = document.createElement('div');
+divElement.innerText = todo1;
+document.body.appendChild(divElement);
+
+
+
 
 
 
