@@ -30,6 +30,19 @@
     <button onclick="toInches()">Convert to inch</button>
     <div id="result"></div>
     <hr>
+    <br>
+
+    <label for="Product">Product:</label> <input type="text" name="Product" id="product-field">
+    <label for="Price">Price:</label> <input type="number" name="Price" id="price-field">
+    <label for="Quantity">Quantity:</label> <input type="number" name="Quantity" id="quantity-field"> <br><br>
+    <button onclick="storeCartItems()">Add To Cart</button>
+    <span id="cart-qty"><em>No items yet...</em></span> <hr>
+    <h3>Details of Items Cart</h3>
+    <div id="receipt"></div>
+    <hr>
+    <div id="total-cost">Total Cost: N/A</div>
+
+
     
     <script src="index.js"></script>
 </body>

@@ -164,28 +164,111 @@
 //     document.getElementById('cart').innerHTML = '';
 // }
 
-function toCM(){
-    const inputFieldID = document.getElementById('cm-to-inch-field');
-    const inputFieldValue = inputFieldID.value;
-    inputFieldValue *= 2.54;
-    console.log(inputFieldValue);
-    document.getElementById('result').innerHTML = '';
-    renderResult(inputFieldValue);
-}
-function toInches(){
-    const inputFieldID = document.getElementById('cm-to-inch-field');
-    const inputFieldValue = inputFieldID.value;
-    inputFieldValue /= 2.54;
-    console.log(inputFieldValue);
-    document.getElementById('result').innerHTML = '';
-    renderResult(inputFieldValue);
+// function toCM(){
+//     const inputFieldID = document.getElementById('cm-to-inch-field');
+//     const inputFieldValue = inputFieldID.value;
+//     inputFieldValue *= 2.54;
+//     console.log(inputFieldValue);
+//     document.getElementById('result').innerHTML = '';
+//     renderResult(inputFieldValue);
+// }
+// function toInches(){
+//     const inputFieldID = document.getElementById('cm-to-inch-field');
+//     const inputFieldValue = inputFieldID.value;
+//     inputFieldValue /= 2.54;
+//     console.log(inputFieldValue);
+//     document.getElementById('result').innerHTML = '';
+//     renderResult(inputFieldValue);
+// }
+
+// function renderResult(value){
+//     const resultID = document.getElementById('result');
+//     const newResultID = document.createElement('div');
+//     newResultID.innerText = value;
+//     resultID.appendChild(newResultID);
+// }
+
+const cartItems = [];
+
+function storeCartItems(){
+    const productFieldID = document.getElementById('product-field');
+    const priceFieldID = document.getElementById('price-field');
+    const qtyFieldID = document.getElementById('quantity-field');
+
+    const productFieldValue = productFieldID.value;
+    const priceFieldValue = priceFieldID.value;
+    const qtyFieldValue = qtyFieldID.value;
+
+    cartItems.push(
+        {
+            Product:    productFieldValue,
+            Price:      priceFieldValue,
+            Quantity:   qtyFieldValue
+        }
+    )
+    console.log(cartItems);
+
+    const newSpan = document.createElement('em');
+    const newBtn = document.createElement('button');
+    const nextNewBtn = document.createElement('button');
+
+    newBtn.setAttribute("class", "btn");
+    newBtn.setAttribute("onclick", "renderCartReceipts()");
+    newBtn.innerText = "Generate Receipts"
+
+    newSpan.setAttribute("id", "initia-info");
+
+    nextNewBtn.setAttribute("class", "btn");
+    nextNewBtn.setAttribute("onclick", "clearAll()");  
+    nextNewBtn.innerText = "Clear Items For New Purchases"
+    
+    newSpan.innerText = "No items cart is: " + cartItems.length+ "    " ;
+    let cartQtyID = document.getElementById('cart-qty');
+    document.getElementById('cart-qty').innerHTML = '';
+    cartQtyID.appendChild(newSpan);
+    cartQtyID.appendChild(newBtn);
+    cartQtyID.appendChild(nextNewBtn);
 }
 
-function renderResult(value){
-    const resultID = document.getElementById('result');
-    const newResultID = document.createElement('div');
-    newResultID.innerText = value;
-    resultID.appendChild(newResultID);
+function cartTotal(totalCost){
+    const totalCostID = document.getElementById('total-cost');
+    document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
+    setTimeout(function(){
+        totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
+    }, 2000);  
+}
+
+function renderCartReceipts(){
+    let totalCost = 0;
+    document.getElementById('receipt').innerHTML = '';
+
+    cartItems.forEach((cartItemsToReceipt) => {
+        let receiptElement = document.createElement('div');
+        productForEachCart = cartItemsToReceipt.Price * cartItemsToReceipt.Quantity;
+        receiptElement.innerText = cartItemsToReceipt.Product+ " =>  $" +cartItemsToReceipt.Price+ "  *  " +cartItemsToReceipt.Quantity+ "  =  $"+productForEachCart;
+        totalCost +=productForEachCart;
+
+        const showReceiptInfoID = document.getElementById('receipt');
+        showReceiptInfoID.appendChild(receiptElement);
+    });
+    cartTotal(totalCost);
+    console.log("Total cost: "+totalCost);
+}
+
+
+function clearAll() {
+    document.getElementById('total-cost').innerHTML = '';
+    document.getElementById('cart-qty').innerHTML = '<em>No items yet...</em>';
+    document.getElementById('receipt').innerHTML = '';
+    document.getElementById('total-cost').innerText = 'Total Cost: N/A';
+    productFieldID = document.getElementById('product-field');
+    priceFieldID = document.getElementById('price-field');
+    qtyFieldID = document.getElementById('quantity-field');
+    productFieldID.value = '';
+    priceFieldID.value = '';
+    qtyFieldID.value = '';
+    
+
 }
 
 
