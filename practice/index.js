@@ -188,7 +188,7 @@
 //     resultID.appendChild(newResultID);
 // }
 
-const cartItems = [];
+let cartItems = [];
 
 function storeCartItems(){
     const productFieldID = document.getElementById('product-field');
@@ -212,30 +212,21 @@ function storeCartItems(){
     const newBtn = document.createElement('button');
     const nextNewBtn = document.createElement('button');
 
-    newBtn.setAttribute("class", "btn");
-    newBtn.setAttribute("onclick", "renderCartReceipts()");
-    newBtn.innerText = "Generate Receipts"
-
-    newSpan.setAttribute("id", "initia-info");
-
-    nextNewBtn.setAttribute("class", "btn");
-    nextNewBtn.setAttribute("onclick", "clearAll()");  
-    nextNewBtn.innerText = "Clear Items For New Purchases"
-    
     newSpan.innerText = "No items cart is: " + cartItems.length+ "    " ;
-    let cartQtyID = document.getElementById('cart-qty');
+    newBtn.innerText = "Generate Receipts";   
+    nextNewBtn.innerText = "Clear Items For New Purchases";
+ 
+    newBtn.style = 'margin-left: 15px';
+    nextNewBtn.style = 'margin-left: 15px';
+    
+    newBtn.onclick = renderCartReceipts;
+    nextNewBtn.onclick = clearAll;
+
+    const cartQtyID = document.getElementById('cart-qty');
     document.getElementById('cart-qty').innerHTML = '';
     cartQtyID.appendChild(newSpan);
     cartQtyID.appendChild(newBtn);
     cartQtyID.appendChild(nextNewBtn);
-}
-
-function cartTotal(totalCost){
-    const totalCostID = document.getElementById('total-cost');
-    document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
-    setTimeout(function(){
-        totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
-    }, 2000);  
 }
 
 function renderCartReceipts(){
@@ -255,9 +246,16 @@ function renderCartReceipts(){
     console.log("Total cost: "+totalCost);
 }
 
+function cartTotal(totalCost){
+    const totalCostID = document.getElementById('total-cost');
+    document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
+    setTimeout(function(){
+        totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
+    }, 1000);  
+}
+
 
 function clearAll() {
-    document.getElementById('total-cost').innerHTML = '';
     document.getElementById('cart-qty').innerHTML = '<em>No items yet...</em>';
     document.getElementById('receipt').innerHTML = '';
     document.getElementById('total-cost').innerText = 'Total Cost: N/A';
@@ -267,6 +265,7 @@ function clearAll() {
     productFieldID.value = '';
     priceFieldID.value = '';
     qtyFieldID.value = '';
+    cartItems = [];
     
 
 }
