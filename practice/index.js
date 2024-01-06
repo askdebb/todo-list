@@ -130,40 +130,62 @@
 //     getShowDivID.innerText = getInputText;
 // }
 
-function addApple (){
-    let appleBtnID = document.querySelector('#apple-id');
-    let appleBtnText = appleBtnID.innerText;
+// function addApple (){
+//     let appleBtnID = document.querySelector('#apple-id');
+//     let appleBtnText = appleBtnID.innerText;
    
-    let newID = document.createElement('div');
-    newID.innerText = appleBtnText;
+//     let newID = document.createElement('div');
+//     newID.innerText = appleBtnText;
     
-    let cartID = document.getElementById('cart');
-    cartID.appendChild(newID);
-}
-function addTomato (){
-    let tomatoBtnID = document.querySelector('#tomato-id');
-    let tomatoBtnText = tomatoBtnID.innerText;
+//     let cartID = document.getElementById('cart');
+//     cartID.appendChild(newID);
+// }
+// function addTomato (){
+//     let tomatoBtnID = document.querySelector('#tomato-id');
+//     let tomatoBtnText = tomatoBtnID.innerText;
    
-    let newID = document.createElement('div');
-    newID.innerText = tomatoBtnText;
+//     let newID = document.createElement('div');
+//     newID.innerText = tomatoBtnText;
     
-    let cartID = document.getElementById('cart');
-    cartID.appendChild(newID);
-}
-function addEggs (){
-    let eggsBtnID = document.querySelector('#eggs-id');
-    let eggsBtnText = eggsBtnID.innerText;
+//     let cartID = document.getElementById('cart');
+//     cartID.appendChild(newID);
+// }
+// function addEggs (){
+//     const eggsBtnID = document.querySelector('#eggs-id');
+//     const eggsBtnText = eggsBtnID.innerText;
    
-    let newID = document.createElement('div');
-    newID.innerText = eggsBtnText;
+//     const newID = document.createElement('div');
+//     newID.innerText = eggsBtnText;
     
-    let cartID = document.getElementById('cart');
-    cartID.appendChild(newID);
+//     const cartID = document.getElementById('cart');
+//     cartID.appendChild(newID);
+// }
+// function clearSelection (){
+//     document.getElementById('cart').innerHTML = '';
+// }
+
+function toCM(){
+    const inputFieldID = document.getElementById('cm-to-inch-field');
+    const inputFieldValue = inputFieldID.value;
+    inputFieldValue *= 2.54;
+    console.log(inputFieldValue);
+    document.getElementById('result').innerHTML = '';
+    renderResult(inputFieldValue);
 }
-function clearSelection (){
-    document.getElementById('cart').innerHTML = '';
+function toInches(){
+    const inputFieldID = document.getElementById('cm-to-inch-field');
+    const inputFieldValue = inputFieldID.value;
+    inputFieldValue /= 2.54;
+    console.log(inputFieldValue);
+    document.getElementById('result').innerHTML = '';
+    renderResult(inputFieldValue);
 }
 
-
+function renderResult(value){
+    const resultID = document.getElementById('result');
+    const newResultID = document.createElement('div');
+    newResultID.innerText = value;
+    resultID.appendChild(newResultID);
+}
 
 
