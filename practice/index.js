@@ -195,6 +195,8 @@ function storeCartItems(){
     const priceFieldID = document.getElementById('price-field');
     const qtyFieldID = document.getElementById('quantity-field');
 
+    const id = new Date().getTime();
+
     const productFieldValue = productFieldID.value;
     const priceFieldValue = priceFieldID.value;
     const qtyFieldValue = qtyFieldID.value;
@@ -203,7 +205,8 @@ function storeCartItems(){
         {
             Product:    productFieldValue,
             Price:      priceFieldValue,
-            Quantity:   qtyFieldValue
+            Quantity:   qtyFieldValue,
+            SN: id
         }
     )
     console.log(cartItems);
@@ -234,10 +237,19 @@ function renderCartReceipts(){
     document.getElementById('receipt').innerHTML = '';
 
     cartItems.forEach((cartItemsToReceipt) => {
-        let receiptElement = document.createElement('div');
+        const receiptElement = document.createElement('div');
         productForEachCart = cartItemsToReceipt.Price * cartItemsToReceipt.Quantity;
-        receiptElement.innerText = cartItemsToReceipt.Product+ " =>  $" +cartItemsToReceipt.Price+ "  *  " +cartItemsToReceipt.Quantity+ "  =  $"+productForEachCart;
+        receiptElement.innerText ="Product's S/N: " +cartItemsToReceipt.SN+":  "+cartItemsToReceipt.Product+ " =>  $" +cartItemsToReceipt.Price+ "  *  " +cartItemsToReceipt.Quantity+ "  =  $"+productForEachCart;
         totalCost +=productForEachCart;
+
+        //adding delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.style = 'margin-left:30px';
+        deleteBtn.id = cartItemsToReceipt.SN;
+        deleteBtn.onclick = deleteCartItems;
+        receiptElement.appendChild(deleteBtn);
+
 
         const showReceiptInfoID = document.getElementById('receipt');
         showReceiptInfoID.appendChild(receiptElement);
@@ -251,7 +263,7 @@ function cartTotal(totalCost){
     document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
     setTimeout(function(){
         totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
-    }, 1000);  
+    }, 800);  
 }
 
 
@@ -266,7 +278,12 @@ function clearAll() {
     priceFieldID.value = '';
     qtyFieldID.value = '';
     cartItems = [];
-    
+}
+
+function deleteCartItems(e){
+    const delBtnTarget = e.target;
+    const delBtnID = delBtnTarget.id;
+    console.log(delBtnID);
 
 }
 
