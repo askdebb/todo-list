@@ -188,103 +188,160 @@
 //     resultID.appendChild(newResultID);
 // }
 
-let cartItems = [];
+// let cartItems = [];
 
-function storeCartItems(){
-    const productFieldID = document.getElementById('product-field');
-    const priceFieldID = document.getElementById('price-field');
-    const qtyFieldID = document.getElementById('quantity-field');
+// function storeCartItems(){
+//     const productFieldID = document.getElementById('product-field');
+//     const priceFieldID = document.getElementById('price-field');
+//     const qtyFieldID = document.getElementById('quantity-field');
 
+//     const id = new Date().getTime();
+
+//     const productFieldValue = productFieldID.value;
+//     const priceFieldValue = priceFieldID.value;
+//     const qtyFieldValue = qtyFieldID.value;
+
+//     cartItems.push(
+//         {
+//             Product:    productFieldValue,
+//             Price:      priceFieldValue,
+//             Quantity:   qtyFieldValue,
+//             SN: id
+//         }
+//     )
+//     console.log(cartItems);
+
+//     const newSpan = document.createElement('em');
+//     const newBtn = document.createElement('button');
+//     const nextNewBtn = document.createElement('button');
+
+//     newSpan.innerText = "No items cart is: " + cartItems.length+ "    " ;
+//     newBtn.innerText = "Generate Receipts";   
+//     nextNewBtn.innerText = "Clear Items For New Purchases";
+ 
+//     newBtn.style = 'margin-left: 15px';
+//     nextNewBtn.style = 'margin-left: 15px';
+    
+//     newBtn.onclick = renderCartReceipts;
+//     nextNewBtn.onclick = clearAll;
+
+//     const cartQtyID = document.getElementById('cart-qty');
+//     document.getElementById('cart-qty').innerHTML = '';
+//     cartQtyID.appendChild(newSpan);
+//     cartQtyID.appendChild(newBtn);
+//     cartQtyID.appendChild(nextNewBtn);
+// }
+
+// function renderCartReceipts(){
+//     let totalCost = 0;
+//     document.getElementById('receipt').innerHTML = '';
+
+//     cartItems.forEach((cartItemsToReceipt) => {
+//         const receiptElement = document.createElement('div');
+//         productForEachCart = cartItemsToReceipt.Price * cartItemsToReceipt.Quantity;
+//         receiptElement.innerText ="Product's S/N: " +cartItemsToReceipt.SN+":  "+cartItemsToReceipt.Product+ " =>  $" +cartItemsToReceipt.Price+ "  *  " +cartItemsToReceipt.Quantity+ "  =  $"+productForEachCart;
+//         totalCost +=productForEachCart;
+
+//         //adding delete button
+//         const deleteBtn = document.createElement('button');
+//         deleteBtn.innerText = 'Delete';
+//         deleteBtn.style = 'margin-left:30px';
+//         deleteBtn.id = cartItemsToReceipt.SN;
+//         deleteBtn.onclick = deleteCartItems;
+//         receiptElement.appendChild(deleteBtn);
+
+
+//         const showReceiptInfoID = document.getElementById('receipt');
+//         showReceiptInfoID.appendChild(receiptElement);
+//     });
+//     cartTotal(totalCost);
+//     console.log("Total cost: "+totalCost);
+// }
+
+// function cartTotal(totalCost){
+//     const totalCostID = document.getElementById('total-cost');
+//     document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
+//     setTimeout(function(){
+//         totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
+//     }, 800);  
+// }
+
+
+// function clearAll() {
+//     document.getElementById('cart-qty').innerHTML = '<em>No items yet...</em>';
+//     document.getElementById('receipt').innerHTML = '';
+//     document.getElementById('total-cost').innerText = 'Total Cost: N/A';
+//     productFieldID = document.getElementById('product-field');
+//     priceFieldID = document.getElementById('price-field');
+//     qtyFieldID = document.getElementById('quantity-field');
+//     productFieldID.value = '';
+//     priceFieldID.value = '';
+//     qtyFieldID.value = '';
+//     cartItems = [];
+// }
+
+// function deleteCartItems(e){
+//     const delBtnTarget = e.target;
+//     const delBtnID = delBtnTarget.id;
+//     console.log(delBtnID);
+// }
+
+const commodityItems = [];
+
+
+function showItemsToPurchase() {
+    const goodsField = document.getElementById('goods-field');
+    const priceField = document.getElementById('price-field');
     const id = new Date().getTime();
 
-    const productFieldValue = productFieldID.value;
-    const priceFieldValue = priceFieldID.value;
-    const qtyFieldValue = qtyFieldID.value;
+    const goodsFieldValue = goodsField.value;
+    const priceFieldValue = priceField.value;
 
-    cartItems.push(
+    commodityItems.push(
         {
-            Product:    productFieldValue,
-            Price:      priceFieldValue,
-            Quantity:   qtyFieldValue,
-            SN: id
+            ID:         id,
+            Commodity:  goodsFieldValue,
+            Price:      priceFieldValue
         }
     )
-    console.log(cartItems);
+    console.log(commodityItems);
+    // for(let x in commodityItems){
+    //      console.log(Object.keys(commodityItems[x]));
+    // }
+    renderCommodityToPurchase();
+}
 
-    const newSpan = document.createElement('em');
-    const newBtn = document.createElement('button');
-    const nextNewBtn = document.createElement('button');
 
-    newSpan.innerText = "No items cart is: " + cartItems.length+ "    " ;
-    newBtn.innerText = "Generate Receipts";   
-    nextNewBtn.innerText = "Clear Items For New Purchases";
- 
-    newBtn.style = 'margin-left: 15px';
-    nextNewBtn.style = 'margin-left: 15px';
+function renderCommodityToPurchase(){
+    // const itemsToPurchase = document.getElementById('items-list');
+
+    renderShowItemsArray();
+}
+
+function renderShowItemsArray(){
+    document.getElementById('items-list').innerHTML = '';
     
-    newBtn.onclick = renderCartReceipts;
-    nextNewBtn.onclick = clearAll;
+    commodityItems.forEach((items) => {
+        document.getElementById('qty-cart').innerHTML = '';
 
-    const cartQtyID = document.getElementById('cart-qty');
-    document.getElementById('cart-qty').innerHTML = '';
-    cartQtyID.appendChild(newSpan);
-    cartQtyID.appendChild(newBtn);
-    cartQtyID.appendChild(nextNewBtn);
-}
+        const newSpan = document.createElement('span');
+        const qtySpan = document.createElement('span');
 
-function renderCartReceipts(){
-    let totalCost = 0;
-    document.getElementById('receipt').innerHTML = '';
+        qtySpan.innerText = commodityItems.length;
+        let qtyCartID = document.getElementById('qty-cart');
+        qtyCartID.appendChild(qtySpan);
 
-    cartItems.forEach((cartItemsToReceipt) => {
-        const receiptElement = document.createElement('div');
-        productForEachCart = cartItemsToReceipt.Price * cartItemsToReceipt.Quantity;
-        receiptElement.innerText ="Product's S/N: " +cartItemsToReceipt.SN+":  "+cartItemsToReceipt.Product+ " =>  $" +cartItemsToReceipt.Price+ "  *  " +cartItemsToReceipt.Quantity+ "  =  $"+productForEachCart;
-        totalCost +=productForEachCart;
+        newSpan.style = "margin-left: 5px";
 
-        //adding delete button
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerText = 'Delete';
-        deleteBtn.style = 'margin-left:30px';
-        deleteBtn.id = cartItemsToReceipt.SN;
-        deleteBtn.onclick = deleteCartItems;
-        receiptElement.appendChild(deleteBtn);
-
-
-        const showReceiptInfoID = document.getElementById('receipt');
-        showReceiptInfoID.appendChild(receiptElement);
-    });
-    cartTotal(totalCost);
-    console.log("Total cost: "+totalCost);
-}
-
-function cartTotal(totalCost){
-    const totalCostID = document.getElementById('total-cost');
-    document.getElementById('total-cost').innerHTML = "Please wait, as we process your request...";
-    setTimeout(function(){
-        totalCostID.innerText = "Total cost of "+cartItems.length+" items purchased is: $"+totalCost;
-    }, 800);  
-}
-
-
-function clearAll() {
-    document.getElementById('cart-qty').innerHTML = '<em>No items yet...</em>';
-    document.getElementById('receipt').innerHTML = '';
-    document.getElementById('total-cost').innerText = 'Total Cost: N/A';
-    productFieldID = document.getElementById('product-field');
-    priceFieldID = document.getElementById('price-field');
-    qtyFieldID = document.getElementById('quantity-field');
-    productFieldID.value = '';
-    priceFieldID.value = '';
-    qtyFieldID.value = '';
-    cartItems = [];
-}
-
-function deleteCartItems(e){
-    const delBtnTarget = e.target;
-    const delBtnID = delBtnTarget.id;
-    console.log(delBtnID);
+        newSpan.innerText += items.Commodity+",";
+        const itemsToPurchase = document.getElementById('items-list');
+        itemsToPurchase.appendChild(newSpan);
+    })
+    
 
 }
+
+
+
 
 
