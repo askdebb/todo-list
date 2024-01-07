@@ -286,13 +286,14 @@
 //     console.log(delBtnID);
 // }
 
-const commodityItems = [];
+let commodityItems = [];
 
 
 function showItemsToPurchase() {
     const goodsField = document.getElementById('goods-field');
-    const priceField = document.getElementById('price-field');
+    const priceField = document.getElementById('prices-field');
     const id = new Date().getTime();
+    totalValue = 0;
 
     const goodsFieldValue = goodsField.value;
     const priceFieldValue = priceField.value;
@@ -305,30 +306,56 @@ function showItemsToPurchase() {
         }
     )
     console.log(commodityItems);
-    // for(let x in commodityItems){
-    //      console.log(Object.keys(commodityItems[x]));
-    // }
+    
+        //  console.log(Object.keys(commodityItems.Price));
+    
     renderCommodityToPurchase();
 }
 
 
 function renderCommodityToPurchase(){
-    // const itemsToPurchase = document.getElementById('items-list');
+    document.getElementById('receipt-of-commodities-to-purchse').innerHTML = "Processing purchase, a moment please ...";
+
+    setTimeout(function(){
+        document.getElementById('receipt-of-commodities-to-purchse').innerHTML = "";
+        const receiptOfCommoditiesToPurchase = document.getElementById('receipt-of-commodities-to-purchse');
+
+        commodityItems.forEach((comoditiesCart) =>{
+            const newDiv = document.createElement('div');
+            newDiv.innerText = comoditiesCart.Commodity + "  $"+comoditiesCart.Price;
+           
+            const newBtnAdd = document.createElement('button');
+            newBtnAdd.innerText = 'Add';
+            newBtnAdd.style = 'margin-left:50px';
+            newBtnAdd.id = comoditiesCart.ID;
+            newBtnAdd.onclick = addBtn;
+            newDiv.appendChild(newBtnAdd);
+
+            receiptOfCommoditiesToPurchase.appendChild(newDiv);
+           
+        })
+    }, 1000);
 
     renderShowItemsArray();
+    
 }
 
 function renderShowItemsArray(){
     document.getElementById('items-list').innerHTML = '';
+    document.getElementById('total').innerHTML = '<em> Total is: </em>';
+    
     
     commodityItems.forEach((items) => {
         document.getElementById('qty-cart').innerHTML = '';
 
         const newSpan = document.createElement('span');
+        const qtySpanNumberStatement = document.createElement('span')
         const qtySpan = document.createElement('span');
+        qtySpanNumberStatement.innerText = "Number of items in carts: ";
 
         qtySpan.innerText = commodityItems.length;
         let qtyCartID = document.getElementById('qty-cart');
+        qtyCartID.appendChild(qtySpanNumberStatement);
         qtyCartID.appendChild(qtySpan);
 
         newSpan.style = "margin-left: 5px";
@@ -336,10 +363,39 @@ function renderShowItemsArray(){
         newSpan.innerText += items.Commodity+",";
         const itemsToPurchase = document.getElementById('items-list');
         itemsToPurchase.appendChild(newSpan);
-    })
-    
-
+    });
 }
+let totalValue = 0;
+function addBtn (event){
+
+    const eventTarget = event.target;
+    const eventTargetID = eventTarget.id;
+    document.getElementById(eventTargetID).disabled = true;
+    eventTarget.innerText = "Added already";
+
+    document.getElementById('total').innerHTML = '';
+    const newTotalSpan = document.createElement('span');
+    newTotalSpan.innerHTML = '<em> Total is: </em>';
+
+    const totalDivID = document.getElementById('total');
+    totalDivID.appendChild(newTotalSpan);
+
+    const newTotalValueSpan = document.createElement('em');
+
+    const newprice = commodityItems.find((comos) => {
+        
+            return comos.ID == eventTargetID;
+            
+    });
+    console.log(newprice);
+    console.log(newprice.Price);
+   
+    totalValue += +newprice.Price;
+    console.log(totalValue);
+    newTotalValueSpan.innerText = totalValue;
+    newTotalSpan.appendChild(newTotalValueSpan);
+}
+
 
 
 
