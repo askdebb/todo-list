@@ -287,30 +287,90 @@
 // }
 
 let commodityItems = [];
+const maxCharacters = 10;
+const goodsField = document.getElementById('goods-field');
+
+function inputFieldCharacterCheck(content, maxCharacter){
+    if(content.length > maxCharacter){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+goodsField.addEventListener("keyup", function (){
+    document.getElementById('character-counter').innerHTML = '';
+    const characterCounter = document.getElementById('character-counter');
+    const newSpanCounter = document.createElement('span');
+    newSpanCounter.innerHTML = maxCharacters - this.value.length;
+    characterCounter.appendChild(newSpanCounter);
+})
 
 
 function showItemsToPurchase() {
     const goodsField = document.getElementById('goods-field');
     const priceField = document.getElementById('prices-field');
+    const changeBtnState = document.getElementById('change-state');
     const id = new Date().getTime();
     totalValue = 0;
 
-    const goodsFieldValue = goodsField.value;
-    const priceFieldValue = priceField.value;
+    
 
-    commodityItems.push(
-        {
-            ID:         id,
-            Commodity:  goodsFieldValue,
-            Price:      priceFieldValue
-        }
-    )
-    console.log(commodityItems);
+   
+    if(goodsField.value == '' ){
+        const priceFieldValue = priceField.value;
+        changeBtnState.disabled = true;
+
+
+        commodityItems.push(
+            {
+                ID:         id,
+                Commodity:  'nothing%entered',
+                Price:      priceFieldValue
+            }
+        )
+        
+    } else if (priceField.value == ''){
+        const goodsFieldValue = goodsField.value; 
+        changeBtnState.disabled = true;
+
+        commodityItems.push(
+            {
+                ID:         id,
+                Commodity:  goodsFieldValue,
+                Price:      'no%value'
+            }
+        )
+    } else if (priceField.value == '' && goodsField.value == ''){
+        changeBtnState.disabled = true;
+
+        commodityItems.push(
+            {
+                ID:         id,
+                Commodity:  "nothing%entered",
+                Price:      'no%value'
+            }
+        )
+
+    }
+    else {
+              
+        const goodsFieldValue = goodsField.value; 
+        const priceFieldValue = priceField.value;
+
+        commodityItems.push(
+            {
+                ID:         id,
+                Commodity:  goodsFieldValue,
+                Price:      priceFieldValue
+            }
+        )
+    }
     
-        //  console.log(Object.keys(commodityItems.Price));
-    
+    console.log(commodityItems);    
     renderCommodityToPurchase();
 }
+
 
 
 function renderCommodityToPurchase(){

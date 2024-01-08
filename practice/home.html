@@ -46,7 +46,8 @@
 
     <label for="goods">Commodity:</label> <input type="text" name="goods" id="goods-field">
     <label for="price">Price:</label> <input type="number" name="price" id="prices-field">
-    <button onclick="showItemsToPurchase()">Add To Cart</button>
+    <button id="change-state" onclick="showItemsToPurchase()">Add To Cart</button>
+    <div><small><em>Characters left <span id="character-counter"> 10</span>.</em></small></div>
     <hr>
     <h3>List of Items To Be Purchased</h3>
     <div id="items-to-purchase"><span>Commodities to purchase are: <span id="items-list"></span></span></div>
