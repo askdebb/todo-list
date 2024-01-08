@@ -289,6 +289,8 @@
 let commodityItems = [];
 const maxCharacters = 10;
 const goodsField = document.getElementById('goods-field');
+const priceField = document.getElementById('prices-field');
+const changeBtnState = document.getElementById('change-state');
 
 function inputFieldCharacterCheck(content, maxCharacter){
     if(content.length > maxCharacter){
@@ -308,9 +310,7 @@ goodsField.addEventListener("keyup", function (){
 
 
 function showItemsToPurchase() {
-    const goodsField = document.getElementById('goods-field');
-    const priceField = document.getElementById('prices-field');
-    const changeBtnState = document.getElementById('change-state');
+    
     const id = new Date().getTime();
     totalValue = 0;
 
