@@ -287,10 +287,14 @@
 // }
 
 let commodityItems = [];
-const maxCharacters = 10;
+const maxCharacters = 11;
 const goodsField = document.getElementById('goods-field');
 const priceField = document.getElementById('prices-field');
 const changeBtnState = document.getElementById('change-state');
+const describeCharacterLeft = document.querySelector('small');
+describeCharacterLeft.style = 'color: green';
+
+goodsField.maxLength = 11;
 
 function inputFieldCharacterCheck(content, maxCharacter){
     if(content.length > maxCharacter){
@@ -305,7 +309,26 @@ goodsField.addEventListener("keyup", function (){
     const characterCounter = document.getElementById('character-counter');
     const newSpanCounter = document.createElement('span');
     newSpanCounter.innerHTML = maxCharacters - this.value.length;
+
     characterCounter.appendChild(newSpanCounter);
+
+    if(!inputFieldCharacterCheck(this.value, (maxCharacters-1))){
+        describeCharacterLeft.style = 'color: red';
+        changeBtnState.disabled = true;
+
+    }else if(!inputFieldCharacterCheck(this.value, (maxCharacters-2))){
+        changeBtnState.disabled = false;
+    }  
+    
+    else if(!inputFieldCharacterCheck(this.value, (maxCharacters-5))){
+        describeCharacterLeft.style = 'color: gold';
+    } 
+     
+    else {
+        describeCharacterLeft.style = 'color: green';
+        changeBtnState.disabled = false;
+    }
+    
 })
 
 
